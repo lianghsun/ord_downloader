@@ -1,4 +1,4 @@
-altair==5.0.1
+altair==4.2.2
 attrs==23.1.0
 blinker==1.6.2
 cachetools==5.3.1
@@ -10,6 +10,7 @@ cryptography==41.0.1
 decorator==5.1.1
 Deprecated==1.2.14
 docopt==0.6.2
+entrypoints==0.4
 et-xmlfile==1.1.0
 Flask==2.3.2
 gitdb==4.0.10
@@ -29,10 +30,9 @@ numpy==1.25.0
 openpyxl==3.1.2
 ord-schema==0.3.54
 packaging==23.1
-pandas==2.0.2
+pandas==1.5.3
 Pillow==9.5.0
-pipreqs==0.4.13
-protobuf==4.23.3
+protobuf==3.19.6
 psycopg2==2.9.6
 pyarrow==12.0.1
 pycparser==2.21
@@ -52,7 +52,7 @@ rich==13.4.2
 six==1.16.0
 smmap==5.0.0
 SQLAlchemy==2.0.17
-streamlit==1.24.0
+streamlit==1.21.0
 tenacity==8.2.2
 toml==0.10.2
 toolz==0.12.0
@@ -66,5 +66,4 @@ watchdog==3.0.0
 Werkzeug==2.3.6
 wget==3.2
 wrapt==1.15.0
-yarg==0.1.9
 zipp==3.15.0
