@@ -37,14 +37,15 @@ def main():
                 os.remove(output_filename)
             
             try:
-                pb = wget.download(url, out=output_filename)
-                data = message_helpers.load_message(pb, dataset_pb2.Dataset)
-                valid_output = validations.validate_message(data)
-                
-                if 'result' not in st.session_state:
-                    st.session_state.result = ''
-                
-                st.session_state.result = message_helpers.messages_to_dataframe(data.reactions, drop_constant_columns=True)
+                with st.spinner('Fetching data from ORD...'):
+                    pb = wget.download(url, out=output_filename)
+                    data = message_helpers.load_message(pb, dataset_pb2.Dataset)
+                    valid_output = validations.validate_message(data)
+
+                    if 'result' not in st.session_state:
+                        st.session_state.result = ''
+
+                    st.session_state.result = message_helpers.messages_to_dataframe(data.reactions, drop_constant_columns=True)
                 
             except:
                 download_error_handler()
@@ -54,20 +55,11 @@ def main():
             
     if 'result' in st.session_state:
         st.header('Result')
-        st.write(st.session_state.result)
+        st.caption('For performance reasons, we only display the results of random sampling.')
+        st.write(st.session_state.result.sample(5))
         
         st.header('Download')
-        columns = list(st.session_state.result.columns)
-        st.multiselect(
-            label='(Optional) Please select the cols you need. The default selection includes all columns.',
-            options=columns,
-            default=columns,
-            key='selected_cols',
-            help='Create new dataframe containing only columns to be used.',
-        )
-        # st.markdown(get_table_download_link(st.session_state.result[st.session_state.selected_cols]), unsafe_allow_html=True)
-        
-        b64 = st.session_state.result[st.session_state.selected_cols].to_csv(index=False).encode('utf-8')
+        b64 = st.session_state.result.to_csv(index=False).encode('utf-8')
         st.download_button(
             label='Download data as CSV',
             data=b64,
