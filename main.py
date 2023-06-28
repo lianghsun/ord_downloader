@@ -12,6 +12,9 @@ import wget
 
 st.set_page_config(page_title='ORD Downloader', page_icon='🧑‍🔬')
 
+def download_error_handler():
+    st.warning('The file download from ORD failed, possibly due to an incorrect dataset ID. Please double-check if you have misspelled your dataset ID.', icon="⚠️")
+
 # Main app
 def main():
     st.title("🧑‍🔬 ORD Downloader")
